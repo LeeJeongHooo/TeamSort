@@ -88,6 +88,22 @@ body {
   line-height: 80px;
 }
 
+.timer-box div input {
+  display: block;
+  width: 100%;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 80px;
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  color: white;
+}
+
+.timer-box div input::placeholder {
+  color: white;
+}
+
 .timer-box strong {
   position: absolute;
   top: -24px;
@@ -95,6 +111,7 @@ body {
 }
 
 .section-timer button {
+  cursor: pointer;
   box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
   background: #324577;
   border-radius: 50px;
