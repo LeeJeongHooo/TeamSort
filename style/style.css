@@ -1,12 +1,3 @@
-/* 폰트 */
-/* @font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
-    format("woff");
-  font-weight: 400;
-  font-style: normal;
-} */
-
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 
 * {
@@ -88,6 +79,21 @@ body {
   line-height: 80px;
 }
 
+.timer-box + .timer.box {
+  position: relative;
+}
+
+.timer-box + .timer-box::before {
+  display: block;
+  width: 6px;
+  height: 26px;
+  content: "";
+  background: url(../images/dot.png) center no-repeat;
+  position: absolute;
+  top: 25px;
+  left: -14px;
+}
+
 .timer-box div input {
   display: block;
   width: 100%;
@@ -98,6 +104,7 @@ body {
   border: none;
   text-align: center;
   color: white;
+  cursor: pointer;
 }
 
 .timer-box div input::placeholder {
@@ -130,9 +137,17 @@ body {
   margin-right: 6px;
 }
 
-.btn-start.active {
-  background-color: greenyellow;
-  content: "PAUSE";
+.btn-start.setup {
+  background-color: #5180ff;
+  color: white;
+}
+
+.btn-start.setup.active {
+  background-color: #15c2b8;
+}
+
+.btn-start.setup img {
+  content: url("../images/icon-start.png");
 }
 
 .btn-start.active img {
@@ -140,7 +155,12 @@ body {
 }
 
 .btn-reset.active {
-  background-color: pink;
+  background-color: #fb7099;
+  color: white;
+}
+
+.btn-reset.active img {
+  content: url("../images/shape_before.png");
 }
 
 footer {

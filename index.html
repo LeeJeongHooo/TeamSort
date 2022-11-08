@@ -23,29 +23,32 @@
           <div class="timer-box">
             <strong>HRS</strong>
             <div class="time">
-              <input class="hour" data-type="hour" type="text" placeholder="00">
+              <input class="hour" data-type="hour" type="text" placeholder="00" onfocus="this.placeholder = ''"
+                onblur="this.placeholder ='00'">
             </div>
           </div>
           <div class="timer-box">
             <strong>MIN</strong>
             <div class="time">
-              <input class="min" data-type="min" type="text" placeholder="00">
+              <input class="min" data-type="min" placeholder="00" type="text" onfocus="this.placeholder = ''"
+                onblur="this.placeholder ='00'">
             </div>
           </div>
           <div class="timer-box">
             <strong>SEC</strong>
             <div class="time">
-              <input class="sec" data-type="sec" type="text" placeholder="00">
+              <input class="sec" data-type="sec" type="text" placeholder="00" onfocus="this.placeholder = ''"
+                onblur="this.placeholder ='00'">
             </div>
           </div>
         </article>
         <button class="btn-start">
           <img src="images/icon-start-disabled.png" alt="">
-          START
+          <span>START</span>
         </button>
         <button class="btn-reset">
           <img src="images/shape.png" alt="">
-          RESET
+          <span>RESET</span>
         </button>
       </section>
     </main>

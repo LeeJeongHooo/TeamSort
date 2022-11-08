@@ -13,20 +13,32 @@ const btnReset = document.querySelector(".btn-reset");
 const hourInp = document.querySelector(".time .hour");
 const minInp = document.querySelector(".time .min");
 const secInp = document.querySelector(".time .sec");
+const timeList = document.querySelectorAll(".time input");
 
-btnStart.addEventListener("click", (e) => {
-  btnStart.classList.toggle("active");
-  btnReset.classList.toggle("active");
-
-  if (btnStart.classList.contains("active")) {
-    let time = getTimedata();
-    if (time === 0) {
-      alert("타이머를 입력해주세요");
-      return;
+timeList.forEach((item) => {
+  item.addEventListener("change", (e) => {
+    btnStart.classList.remove("setup");
+    btnReset.classList.remove("active");
+    if (hourInp.value || minInp.value || secInp.value) {
+      btnStart.classList.add("setup");
+      btnReset.classList.add("active");
     }
+  });
+});
+
+// 스타트 버튼 기능
+btnStart.addEventListener("click", (e) => {
+  let time = getTimedata();
+  if (time === 0) {
+    alert("타이머에 시간을 입력해주세요");
+    return;
+  }
+  btnStart.classList.toggle("active");
+  if (btnStart.classList.contains("active")) {
+    btnStart.lastElementChild.textContent = "PAUSE";
     Timer(time);
   } else {
-    console.log(activeTimer);
+    btnStart.lastElementChild.textContent = "START";
     console.log("stop!!!");
     clearInterval(activeTimer);
   }
@@ -35,13 +47,14 @@ btnStart.addEventListener("click", (e) => {
 function Timer(time) {
   activeTimer = setInterval(() => {
     --time;
-    console.log(activeTimer);
     let hour = parseInt(time / 3600);
     let min = parseInt((time % 3600) / 60);
     let sec = time % 60;
-    hourInp.vale = hour;
-    minInp.value = min;
-    secInp.value = sec;
+
+    hourInp.value = hour.toString().padStart(2, "0");
+    minInp.value = min.toString().padStart(2, "0");
+    secInp.value = sec.toString().padStart(2, "0");
+
     if (time === 0) {
       clearInterval(activeTimer);
       hourInp.value = "";
@@ -49,7 +62,12 @@ function Timer(time) {
       secInp.value = "";
       btnStart.classList.remove("active");
       btnReset.classList.remove("active");
-      alert("타이머가 종료되었습니다.");
+      btnStart.classList.remove("setup");
+      btnStart.lastElementChild.textContent = "START";
+      // 마지막에 00초까지 보여준 후 alert실행
+      setTimeout(() => {
+        alert("타이머가 종료되었습니다.");
+      }, 100);
     }
   }, 1000);
 }
@@ -73,4 +91,19 @@ function getTimedata() {
   return time;
 }
 
-btnReset.addEventListener("click", (e) => {});
+// 리셋버튼 기능
+btnReset.addEventListener("click", (e) => {
+  let time = getTimedata();
+  if (time === 0) {
+    alert("타이머에 시간을 입력해주세요");
+    return;
+  }
+  clearInterval(activeTimer);
+  hourInp.value = "";
+  minInp.value = "";
+  secInp.value = "";
+  btnStart.classList.remove("active");
+  btnReset.classList.remove("active");
+  btnStart.classList.remove("setup");
+  btnStart.lastElementChild.textContent = "START";
+});
