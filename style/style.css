@@ -130,6 +130,19 @@ body {
   margin-right: 6px;
 }
 
+.btn-start.active {
+  background-color: greenyellow;
+  content: "PAUSE";
+}
+
+.btn-start.active img {
+  content: url("../images/icon-stop.png");
+}
+
+.btn-reset.active {
+  background-color: pink;
+}
+
 footer {
   text-align: center;
 }
